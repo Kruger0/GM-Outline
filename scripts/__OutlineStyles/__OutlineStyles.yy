@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__OutlineStyles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__OutlineStyles",
+  "parent":{
+    "name":"Core",
+    "path":"folders/GM-Outline/Core.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

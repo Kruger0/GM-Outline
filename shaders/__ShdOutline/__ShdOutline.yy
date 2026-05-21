@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ShdOutline",
+  "name":"__ShdOutline",
+  "parent":{
+    "name":"Core",
+    "path":"folders/GM-Outline/Core.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

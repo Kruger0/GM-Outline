@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__OutlineCache",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__OutlineCache",
+  "parent":{
+    "name":"Core",
+    "path":"folders/GM-Outline/Core.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

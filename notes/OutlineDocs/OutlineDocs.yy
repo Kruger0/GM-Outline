@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"v1",
+  "%Name":"OutlineDocs",
+  "name":"OutlineDocs",
+  "parent":{
+    "name":"GM-Outline",
+    "path":"folders/GM-Outline.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

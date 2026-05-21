@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__OutlineBake",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__OutlineBake",
+  "parent":{
+    "name":"Core",
+    "path":"folders/GM-Outline/Core.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
