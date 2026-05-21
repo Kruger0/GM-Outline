@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__OutlineBake",
   "parent":{
-    "name":"Core",
-    "path":"folders/GM-Outline/Core.yy",
+    "name":"Public",
+    "path":"folders/GM-Outline/Core/Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -51,7 +51,7 @@
     {"id":{"name":"__OutlineSet","path":"scripts/__OutlineSet/__OutlineSet.yy",},},
     {"id":{"name":"__OutlineShader","path":"scripts/__OutlineShader/__OutlineShader.yy",},},
     {"id":{"name":"__OutlineSprite","path":"scripts/__OutlineSprite/__OutlineSprite.yy",},},
-    {"id":{"name":"__OutlineStyles","path":"scripts/__OutlineStyles/__OutlineStyles.yy",},},
+    {"id":{"name":"__OutlineStyle","path":"scripts/__OutlineStyle/__OutlineStyle.yy",},},
     {"id":{"name":"__OutlineSurface","path":"scripts/__OutlineSurface/__OutlineSurface.yy",},},
     {"id":{"name":"__OutlineText","path":"scripts/__OutlineText/__OutlineText.yy",},},
     {"id":{"name":"__OutlineTrace","path":"scripts/__OutlineTrace/__OutlineTrace.yy",},},

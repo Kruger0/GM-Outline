@@ -1,6 +1,4 @@
 
-
-
 /// @desc               Draw an outlined surface.
 /// @arg id             The surface to be draw.
 /// @arg x              The X coordinate of the surface.

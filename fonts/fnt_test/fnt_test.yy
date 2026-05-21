@@ -119,8 +119,8 @@
   "maintainGms1Font":false,
   "name":"fnt_test",
   "parent":{
-    "name":"GM-Outline",
-    "path":"GM-Outline.yyp",
+    "name":"Fonts",
+    "path":"folders/Demo/Fonts.yy",
   },
   "pointRounding":0,
   "ranges":[

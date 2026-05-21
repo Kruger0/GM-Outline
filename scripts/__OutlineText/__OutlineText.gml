@@ -1,8 +1,4 @@
 
-
-
-
-
 /// @desc               Draw an outlined text.
 /// @arg x              The X coordinate of the text.
 /// @arg y              The Y coordinate of the text.
@@ -10,7 +6,7 @@
 /// @arg [style]        The style to use for the outline. Define it first before use
 function outline_draw_text(_x, _y, _string, style = __OUTLINE_DEFAULT) {
     var _col = draw_get_color();
-    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("I"), -1, 1, 1, 0, _col, _col, _col, _col, draw_get_alpha(), style);
+    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("Ig"), -1, 1, 1, 0, _col, _col, _col, _col, draw_get_alpha(), style);
 }
 
 
@@ -38,7 +34,7 @@ function outline_draw_text_ext(_x, _y, _string, _sep, _w, style = __OUTLINE_DEFA
 /// @arg alpha          The alpha of the string.
 /// @arg [style]        The style to use for the outline. Define it first before use
 function outline_draw_text_color(_x, _y, _string, _c1, _c2 = _c1, _c3 = _c1, _c4 = _c1, _a = 1, style = __OUTLINE_DEFAULT) {
-    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("I"), -1, 1, 1, 0, _c1, _c2, _c3, _c4, _a, style);
+    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("Ig"), -1, 1, 1, 0, _c1, _c2, _c3, _c4, _a, style);
 }
 
 
@@ -52,7 +48,7 @@ function outline_draw_text_color(_x, _y, _string, _c1, _c2 = _c1, _c3 = _c1, _c4
 /// @arg [style]        The style to use for the outline. Define it first before use
 function outline_draw_text_transformed(_x, _y, _string, _xscale, _yscale, _ang, style = __OUTLINE_DEFAULT) {
     var _col = draw_get_color();
-    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("I"), -1, _xscale, _yscale, _ang, _col, _col, _col, _col, draw_get_alpha(), style);
+    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("Ig"), -1, _xscale, _yscale, _ang, _col, _col, _col, _col, draw_get_alpha(), style);
 }
 
 
@@ -103,7 +99,7 @@ function outline_draw_text_ext_transformed(_x, _y, _string, _sep, _w, _xscale, _
 /// @arg alpha          The alpha of the string.
 /// @arg [style]        The style to use for the outline. Define it first before use
 function outline_draw_text_transformed_color(_x, _y, _string, _xscale, _yscale, _ang, _c1, _c2 = _c1, _c3 = _c1, _c4 = _c1, _a = 1, style = __OUTLINE_DEFAULT) {
-    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("I"), -1, _xscale, _yscale, _ang, _c1, _c2, _c3, _c4, _a, style);
+    outline_draw_text_ext_transformed_color(_x, _y, _string, string_height("Ig"), -1, _xscale, _yscale, _ang, _c1, _c2, _c3, _c4, _a, style);
 }
 
 

@@ -21,7 +21,7 @@ function OutlineStyleDefault(width, color, alpha, roundness, cutoff, resolution,
 }
 
 /// @desc           Creates a new outline style to be used globally
-/// @arg name       The name of the style to create.
+/// @arg name       The name of the style to be referenced.
 /// @arg width      The thickness of the outline in pixels.
 /// @arg color      The color of the outline.
 /// @arg alpha      The alpha of the outline.
@@ -40,6 +40,7 @@ function OutlineStyleCreate(name, width, color, alpha, roundness, cutoff, resolu
         resolution,
         uv_bound,
     }
+    __OutlineTrace(OUTLINE_TRACE.VERBOSE, $"Style '{name}' created.");
 }
 
 /// @desc           Updates an existing outline style
@@ -53,6 +54,7 @@ function OutlineStyleCreate(name, width, color, alpha, roundness, cutoff, resolu
 /// @arg uv_bound   Locks the shader to the sprite UV bounds.
 function OutlineStyleUpdate(name, width, color, alpha, roundness, cutoff, resolution, uv_bound) {
     OutlineStyleCreate(name, width, color, alpha, roundness, cutoff, resolution, uv_bound);
+    __OutlineTrace(OUTLINE_TRACE.VERBOSE, $"Style '{name}' updated.");
 }
 
 /// @desc       Deletes a previously created style.
@@ -60,7 +62,7 @@ function OutlineStyleUpdate(name, width, color, alpha, roundness, cutoff, resolu
 function OutlineStyleDelete(name) {
     static cache = __OutlineInit();
     if (name == __OUTLINE_DEFAULT) {
-        show_debug_message("[Outline] Cannot delete the default style.");
+        __OutlineTrace(OUTLINE_TRACE.CRITICAL, "Cannot delete the default style.");
         return;
     }
     struct_remove(cache.styles, name);
@@ -78,4 +80,3 @@ function OutlineStyleGetDefault() {
     static cache = __OutlineInit();
     return cache.styles[$ __OUTLINE_DEFAULT];
 }
-

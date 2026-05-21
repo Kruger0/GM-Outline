@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__OutlineSet",
   "parent":{
-    "name":"Public",
-    "path":"folders/GM-Outline/Core/Public.yy",
+    "name":"Core",
+    "path":"folders/GM-Outline/Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
