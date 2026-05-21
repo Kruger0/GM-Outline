@@ -147,7 +147,7 @@ function outline_draw_text_ext_transformed_color(_x, _y, _string, _sep, _w, _xsc
     var _gap        = max(_ol_config.line_width, 0);
     var _str_wid    = _gap * 2 + string_width_ext(_string, _sep, _w);
     var _str_hei    = _gap * 2 + string_height_ext(_string, _sep, _w);
-    var _surf       = __outline_surface_get(_str_wid, _str_hei);
+    var _surf       = __OutlineCanvasGet(_str_wid, _str_hei);
     var _xx         = 0;
     var _yy         = 0;
     var _tx         = _gap;

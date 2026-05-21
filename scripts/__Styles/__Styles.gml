@@ -7,7 +7,3 @@
 #macro OUTLINE_RESOLUTION       1.0
 #macro OUTLINE_ROUNDNESS        0.0
 #macro OUTLINE_UV_BOUND_MODE    true
-#macro OUTLINE_CACHE_TEX_SIZE   64
-
-
-

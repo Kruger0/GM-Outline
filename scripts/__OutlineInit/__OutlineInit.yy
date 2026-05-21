@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__OutlineTracker",
+  "%Name":"__OutlineInit",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__OutlineTracker",
+  "name":"__OutlineInit",
   "parent":{
     "name":"Core",
     "path":"folders/GM-Outline/Core.yy",

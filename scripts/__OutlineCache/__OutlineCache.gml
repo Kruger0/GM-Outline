@@ -13,18 +13,17 @@ function __OutlineCache(){
             uv_bound_mode   : OUTLINE_UV_BOUND_MODE,
         },
         
-        styles: {
-            base: {
-                stroke: 1,
-                
-            }
-        },
+        styles: {},
         
         shader_supported    : false,
         shader_compiled     : false,
         support_traced      : false,
         compile_traced      : false,
-            
+        tracer: {
+            not_supported   : "[OUTLINE] - Error: Shaders are not supported in this hardware",
+            not_compiled    : "[OUTLINE] - Error: Main shader could not be compiled on this hardware",
+        },
+        
         uniforms: {
             line_color      : shader_get_uniform(__ShdOutline, "u_line_color"),
             pixel_size      : shader_get_uniform(__ShdOutline, "u_pixel_size"),
@@ -39,39 +38,38 @@ function __OutlineCache(){
             test_index      : 0,
         },
             
-        tracer: {
-            not_supported   : "[OUTLINE] - Error: Shaders are not supported in this hardware",
-            not_compiled    : "[OUTLINE] - Error: Main shader could not be compiled on this hardware",
+        canvas: {
+            min_size    : 64,
+            step        : 4,
+            pool        : [],
+            refs        : [],
+            meta        : [],
+            cursor      : 0,
         },
+        
+        shader: {
+            uniform: {
+                //color,
+                //texel,
+                //wrc,
+                //uv,
+            },
+            supported: {
+                msg: "Shaders are not supported in this hardware",
+                value: shaders_are_supported(),
+                flag: false,
+            },
+            compiled: {
+                msg: "Main shader could not be compiled on this hardware",
+                value: shader_is_compiled(__ShdOutline),
+                flag: false,
+            },
+            cleanup: {
+                msg: "Surface {0} free from memory!"
+            }
+        }
     };
     return data;
 }
-
-
-// Check it resource is supported
-if (shaders_are_supported()) {
-    __OutlineCache().shader_supported = true;
-    if (shader_is_compiled(__ShdOutline)) {
-        __OutlineCache().shader_compiled = true;
-    } else {
-        show_debug_message(__OutlineCache().tracer.not_compiled);
-        __OutlineCache().compile_traced = true;
-    }
-} else {
-    show_debug_message(__OutlineCache().tracer.not_supported);
-    __OutlineCache().support_traced = true;
-}
-
-
-
-
-
-/// @desc    Reset the default shader.
-function outline_end() {
-    if (shader_current() == __ShdOutline) {
-        shader_reset();
-    }
-};
-
 
 

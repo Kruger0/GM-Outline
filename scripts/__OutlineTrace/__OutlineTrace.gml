@@ -1,5 +1,4 @@
 
-
 /// @ignore
 function __OutlineTrace(mode, msg) {
     if (mode <= OUTLINE_TRACE_LEVEL) {

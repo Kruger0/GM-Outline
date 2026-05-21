@@ -40,13 +40,28 @@ function outline_set_config(_width, _col, _alpha, _round, _tol, _res, _uv_bnd) {
     }
 }
 
-/// @arg [line_width]   The thickness, in pixels, of the outline.
-/// @arg [line_col]     The color of the outline.
-/// @arg [line_alpha]   The alpha of the outline.
-/// @arg [roundness]    The roundess factor of the outline.
-/// @arg [tolerance]    The minimum alpha value a pixel need to become an outline.
+/// @desc               Creates a new outline style to be used globally
+/// @arg [width]        The thickness of the outline in pixels.
+/// @arg [color]        The color of the outline.
+/// @arg [alpha]        The alpha of the outline.
+/// @arg [roundness]    The roundness factor of the outline.
+/// @arg [cutoff]       The minimum alpha value a pixel must have to produce an outline.
 /// @arg [resolution]   The resolution of the outline.
-/// @arg [uv_bound]     Locks the shader on the sprite uv.
-function OutlineStyleCreate(width, col, alpha, roundness, tolerance, resolution, uv_bound) {
-    
+/// @arg [uv_bound]     Locks the shader to the sprite UV bounds.
+function OutlineStyleCreate(name, width, color, alpha, roundness, cutoff, resolution, uv_bound) {
+    static cache = __OutlineCache();
+    cache.styles[$ name] = {
+        color,
+        alpha,
+        width,
+        cutoff,
+        resolution, // TODO where is it passed?
+        roundness,
+        uv_bound,
+    }
+}
+
+function OutlineStyleDelete(name) {
+    static cache = __OutlineCache();
+    struct_remove(cache.styles, name);
 }
