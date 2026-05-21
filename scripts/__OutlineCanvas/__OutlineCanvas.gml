@@ -1,12 +1,13 @@
+
 /// @ignore
 function __OutlineCanvasCleanup() {
-    static cache = __OutlineCache();
+    static cache = __OutlineInit();
     var _canvas = cache.canvas;
     var _count = array_length(_canvas.refs);
     
     if (_count > 0) {
         var i = _canvas.cursor;
-        repeat(min(_canvas.step, _count)) {
+        repeat(min(_canvas.stepSize, _count)) {
             if (weak_ref_alive(_canvas.refs[i])) {
                 i = (i + 1) mod _count;
             } else {
@@ -14,7 +15,7 @@ function __OutlineCanvasCleanup() {
                 if (_surf != application_surface) {
                     if (surface_exists(_surf)) {
                         surface_free(_surf);
-                        show_debug_message($"[OUTLINE] - Surface {_surf} free from memory!");
+                        __OutlineTrace(OUTLINE_TRACE.VERBOSE, $"Surface {_surf} freed");
                     }
                 }
                 array_delete(_canvas.refs, i, 1);
@@ -34,7 +35,7 @@ function __OutlineCanvasCleanup() {
 
 /// @ignore
 function __OutlineCanvasCreate(width, height) {
-    static cache = __OutlineCache();
+    static cache = __OutlineInit();
     var _surf = surface_create(width, height);
     var _ref = {surf: _surf};
     array_push(cache.canvas.refs, weak_ref_create(_ref));
@@ -44,7 +45,7 @@ function __OutlineCanvasCreate(width, height) {
 
 /// @ignore
 function __OutlineCanvasGet(width, height) {
-    static cache = __OutlineCache();
+    static cache = __OutlineInit();
     var _canvas     = cache.canvas;
     var _pool       = _canvas.pool;
     var _my_surf    = -1;
@@ -61,7 +62,7 @@ function __OutlineCanvasGet(width, height) {
     }
     
     if (!_surf_found) {
-        _my_surf = __OutlineCanvasCreate(max(width, _canvas.size), max(height, _canvas.size));
+        _my_surf = __OutlineCanvasCreate(max(width, _canvas.minTexSize), max(height, _canvas.minTexSize));
         array_push(_pool, _my_surf);
     }
     

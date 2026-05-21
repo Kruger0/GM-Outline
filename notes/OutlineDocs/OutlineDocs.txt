@@ -50,10 +50,10 @@ There are three types of outline function, each with its recommended use.
         |    draw_set_font(fnt_myfont);
         |    outline_set_text();
         |    draw_text(x, y, "This text has an outline! :D");
-        |    outline_end();
+        |    shader_reset();
                     
     Note that this type does not automatically reset the shader, so
-    the outline_end(); function must be called after drawing the
+    the shader_reset(); function must be called after drawing the
     targets.
     
     *IMPORTART!!* This method is outdated and internalized. The
@@ -149,7 +149,7 @@ to create the "inline" effect.
 
 >> If the arguments of the outline function are not filled, it
 will use the default values. Such values can be edited by the
-struct member "config" inside the static function __OutlineCache(),
+struct member "config" inside the static function __OutlineInit(),
 found at the beginning of the __scr_outline script.
 
 

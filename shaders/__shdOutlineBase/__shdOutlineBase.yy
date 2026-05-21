@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"__ShdOutline",
-  "name":"__ShdOutline",
+  "%Name":"__shdOutlineBase",
+  "name":"__shdOutlineBase",
   "parent":{
     "name":"Core",
     "path":"folders/GM-Outline/Core.yy",

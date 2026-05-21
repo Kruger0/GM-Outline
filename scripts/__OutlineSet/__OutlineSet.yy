@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__Outline",
+  "%Name":"__OutlineSet",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__Outline",
+  "name":"__OutlineSet",
   "parent":{
     "name":"Public",
     "path":"folders/GM-Outline/Core/Public.yy",

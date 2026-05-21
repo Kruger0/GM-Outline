@@ -1,37 +1,12 @@
 
-
-/// @desc               Set the outline shader for the next draw sprite.
-/// @arg sprite         The sprite to be draw.
-/// @arg subimg         The subimg of the sprite to be used.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_set_sprite(_sprite, _subimg, _ol_config = ol_config()) {
-    static uv_default = [0.0, 0.0, 1.0, 1.0];
-    
-    var _thick  = _ol_config.line_width;
-    var _col    = _ol_config.line_col;
-    var _alpha  = _ol_config.line_alpha;
-    var _round  = _ol_config.roundness;
-    var _tol    = _ol_config.tolerance;
-    var _res    = _ol_config.resolution;
-    var _uv_bnd = _ol_config.uv_bound_mode;
-    var _tex    = sprite_get_texture(_sprite, _subimg);
-    var _uv     = _uv_bnd ? sprite_get_uvs(_sprite, _subimg) : uv_default;
-    
-    __outline_set_shader();
-    __outline_set_uniforms(_tex, _uv, _thick, _col, _alpha, _tol, _res, _round, _uv);
-    
-    return _sprite;
-}
-
-
 /// @desc               Draw an outlined sprite.
 /// @arg sprite         The sprite to be draw.
 /// @arg subimg         The subimg of the sprite to be used.
 /// @arg x              The X coordinate of the sprite.
 /// @arg y              The Y coordinate of the sprite.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_draw_sprite(_sprite, _subimg, _x, _y, _ol_config = ol_config()) {
-    outline_draw_sprite_ext(_sprite, _subimg, _x, _y, 1, 1, 0, draw_get_color(), draw_get_alpha(), _ol_config);
+/// @arg [style]        The style to use for the outline. Define it first before use
+function outline_draw_sprite(_sprite, _subimg, _x, _y, style = __OUTLINE_DEFAULT) {
+    outline_draw_sprite_ext(_sprite, _subimg, _x, _y, 1, 1, 0, draw_get_color(), draw_get_alpha(), style);
 }
 
 
@@ -45,11 +20,11 @@ function outline_draw_sprite(_sprite, _subimg, _x, _y, _ol_config = ol_config())
 /// @arg rot            The rotation of the sprite.
 /// @arg colour         The color of the sprite.
 /// @arg alpha          The alpha of the sprite.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _spr_col, _spr_alpha, _ol_config = ol_config()) {
-    outline_set_sprite(_sprite, _subimg, _ol_config);
+/// @arg [style]        The style to use for the outline. Define it first before use
+function outline_draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _spr_col, _spr_alpha, style = __OUTLINE_DEFAULT) {
+    outline_set_sprite(_sprite, _subimg, style);
     draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _rot, _spr_col, _spr_alpha);
-    outline_end();
+    shader_reset();
 }
 
 

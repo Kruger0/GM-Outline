@@ -3,9 +3,10 @@
 /// @arg sprite         The sprite to be draw.
 /// @arg col            The color of the sprite.
 /// @arg alpha          The alpha of the sprite.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_bake_sprite(_sprite, _spr_col, _spr_alpha, _ol_config = ol_config()) {
-    var _thick  = _ol_config.line_width;
+/// @arg [style]        The style to use for the outline. Define it first before use
+function outline_bake_sprite(_sprite, _spr_col, _spr_alpha, style = __OUTLINE_DEFAULT) {
+    var _style = OutlineStyleGet(style);
+    var _thick = _style.width;
     
     var _cur_shad = shader_current();
     if (_cur_shad) {
@@ -30,14 +31,14 @@ function outline_bake_sprite(_sprite, _spr_col, _spr_alpha, _ol_config = ol_conf
             gpu_set_blendmode(bm_normal)
         surface_reset_target();
         
-        outline_set_surface(_surf2, _ol_config);
+        outline_set_surface(_surf2, style);
         surface_set_target(_surf2);
             draw_clear_alpha(0, 0);
             gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
             draw_surface_ext(_surf1, 0, 0, 1, 1, 0, _spr_col, _spr_alpha);
             gpu_set_blendmode(bm_normal);
         surface_reset_target();
-        outline_end();
+        shader_reset();
         
         if !(sprite_exists(_surf_spr)) {
             _surf_spr = sprite_create_from_surface(_surf2, 0, 0, _wid, _hei, false, false, _gap, _gap);
@@ -63,15 +64,16 @@ function outline_bake_sprite(_sprite, _spr_col, _spr_alpha, _ol_config = ol_conf
 /// @arg string         The string to be writen.
 /// @arg colour         The color of the string.
 /// @arg alpha          The alpha of the string.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_bake_sprite_text(_font, _string, _str_col, _str_alpha, _ol_config = ol_config()) {
-    var _thick  = _ol_config.line_width;
-    var _col    = _ol_config.line_col;
-    var _alpha  = _ol_config.line_alpha;
-    var _round  = _ol_config.roundness;
-    var _tol    = _ol_config.tolerance;
-    var _res    = _ol_config.resolution;
-    var _uv_bnd = _ol_config.uv_bound_mode;
+/// @arg [style]        The style to use for the outline. Define it first before use
+function outline_bake_sprite_text(_font, _string, _str_col, _str_alpha, style = __OUTLINE_DEFAULT) {
+    var _style  = OutlineStyleGet(style);
+    var _thick  = _style.width;
+    var _col    = _style.color;
+    var _alpha  = _style.alpha;
+    var _round  = _style.roundness;
+    var _tol    = _style.cutoff;
+    var _res    = _style.resolution;
+    var _uv_bnd = _style.uv_bound;
     
     var _cur_font = draw_get_font();
     var _cur_shad = shader_current();
@@ -111,14 +113,14 @@ function outline_bake_sprite_text(_font, _string, _str_col, _str_alpha, _ol_conf
     surface_reset_target();
     
     _surf2 = surface_create(_wid, _hei)
-    outline_set_surface(_surf2, _ol_config);
+    outline_set_surface(_surf2, style);
     surface_set_target(_surf2);
         draw_clear_alpha(0, 0);
         gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
         draw_surface_ext(_surf1, 0, 0, 1, 1, 0, _str_col, _str_alpha);
         gpu_set_blendmode(bm_normal);
     surface_reset_target();
-    outline_end();
+    shader_reset();
     
     _surf_spr = sprite_create_from_surface(_surf2, 0, 0, _wid, _hei, false, false, _gap+_xx, _gap+_yy);
     
@@ -143,15 +145,16 @@ function outline_bake_sprite_text(_font, _string, _str_col, _str_alpha, _ol_conf
 /// @arg w              The maximum withd in pixels of the string before a line break.
 /// @arg colour         The color of the string.
 /// @arg alpha          The alpha of the string.
-/// @arg [ol_config]    The configuration struct for the outline. Use ol_config() to generate it.
-function outline_bake_sprite_text_ext(_font, _string, _sep, _w, _str_col, _str_alpha, _ol_config = ol_config()) {
-    var _thick  = _ol_config.line_width;
-    var _col    = _ol_config.line_col;
-    var _alpha  = _ol_config.line_alpha;
-    var _round  = _ol_config.roundness;
-    var _tol    = _ol_config.tolerance;
-    var _res    = _ol_config.resolution;
-    var _uv_bnd = _ol_config.uv_bound_mode;
+/// @arg [style]        The style to use for the outline. Define it first before use
+function outline_bake_sprite_text_ext(_font, _string, _sep, _w, _str_col, _str_alpha, style = __OUTLINE_DEFAULT) {
+    var _style  = OutlineStyleGet(style);
+    var _thick  = _style.width;
+    var _col    = _style.color;
+    var _alpha  = _style.alpha;
+    var _round  = _style.roundness;
+    var _tol    = _style.cutoff;
+    var _res    = _style.resolution;
+    var _uv_bnd = _style.uv_bound;
     
     var _cur_font = draw_get_font();
     var _cur_shad = shader_current();
@@ -193,14 +196,14 @@ function outline_bake_sprite_text_ext(_font, _string, _sep, _w, _str_col, _str_a
     surface_reset_target();
     
     _surf2 = surface_create(_wid, _hei)
-    outline_set_surface(_surf2, _ol_config);
+    outline_set_surface(_surf2, style);
     surface_set_target(_surf2);
         draw_clear_alpha(0, 0);    
         gpu_set_blendmode_ext(bm_one, bm_inv_src_alpha);
         draw_surface_ext(_surf1, 0, 0, 1, 1, 0, _str_col, _str_alpha);
         gpu_set_blendmode(bm_normal)
     surface_reset_target();
-    outline_end();
+    shader_reset();
     
     _surf_spr = sprite_create_from_surface(_surf2, 0, 0, _wid, _hei, false, false, _gap+_xx, _gap+_yy);
     
