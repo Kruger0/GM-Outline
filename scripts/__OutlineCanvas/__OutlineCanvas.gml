@@ -31,7 +31,6 @@ function __OutlineCanvasCleanup() {
         _canvas.cursor = i;
     }
 }
-call_later(1, time_source_units_seconds, __OutlineCanvasCleanup, true);
 
 /// @ignore
 function __OutlineCanvasCreate(width, height) {
@@ -46,31 +45,25 @@ function __OutlineCanvasCreate(width, height) {
 /// @ignore
 function __OutlineCanvasGet(width, height) {
     static cache = __OutlineCache();
-    var _canvas        = cache.canvas;
-    var _array      = _canvas.pool;
-    var _index      = 0;
-    var _surf       = -1;
+    var _canvas     = cache.canvas;
+    var _pool       = _canvas.pool;
     var _my_surf    = -1;
     var _surf_found = false;
-
-    for (var i = 0, _len = array_length(_array); i < _len; i++) {
-        _index = _array[i];
-        if (is_struct(_index)) {
-            _surf = _index.surf;
-            if (surface_exists(_surf)) {
-                if (surface_get_width(_surf) >= width && surface_get_height(_surf) >= height) {
-                    _my_surf    = _index;
-                    _surf_found = true;
-                }
+    
+    for (var i = 0, _len = array_length(_pool); i < _len; i++) {
+        var _entry = _pool[i];
+        if (is_struct(_entry) && surface_exists(_entry.surf)) {
+            if (surface_get_width(_entry.surf) >= width && surface_get_height(_entry.surf) >= height) {
+                _my_surf    = _entry;
+                _surf_found = true;
             }
         }
     }
     
-    if !(_surf_found) {
-        _my_surf = __OutlineCanvasCreate(max(width, _canvas.min_size), max(height, _canvas.min_size));
-        array_push(_array, _my_surf);
+    if (!_surf_found) {
+        _my_surf = __OutlineCanvasCreate(max(width, _canvas.size), max(height, _canvas.size));
+        array_push(_pool, _my_surf);
     }
     
     return _my_surf.surf;
 }
-  

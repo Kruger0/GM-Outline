@@ -30,21 +30,15 @@ function __OutlineCache(){
             thk_rn_tol      : shader_get_uniform(__ShdOutline, "u_thk_rn_tol"),
             uv              : shader_get_uniform(__ShdOutline, "u_uv"),
         },
-    
-        surface_mng: {
-            cache           : [],
-            structs         : [],
-            meta            : [],
-            test_index      : 0,
-        },
             
         canvas: {
-            min_size    : 64,
-            step        : 4,
-            pool        : [],
-            refs        : [],
-            meta        : [],
-            cursor      : 0,
+            ts      : undefined,
+            size    : 64,
+            step    : 4,
+            pool    : [],
+            refs    : [],
+            meta    : [],
+            cursor  : 0,
         },
         
         shader: {

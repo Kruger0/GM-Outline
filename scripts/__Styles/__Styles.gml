@@ -1,4 +1,3 @@
-//Default Settings  -  Change them if you want.
 
 #macro OUTLINE_LINE_WIDTH       1.0
 #macro OUTLINE_LINE_COLOR       c_black
